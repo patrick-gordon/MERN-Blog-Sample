@@ -9,7 +9,7 @@ const Post = require('../../models/Post')
 //@Route GET api/posts
 //@Description GET ALL Posts
 //@Access Restricted
-router.get('/', auth, (req,res) => {
+router.get('/',  (req, res) => {
     Post.find()
         .sort({date: -1})
         .then(posts => res.json(posts))
@@ -20,7 +20,7 @@ router.get('/', auth, (req,res) => {
 //@Route POST api/posts
 //@Description Create Posts
 //@Access Restricted
-router.post('/', auth, (req,res) => {
+router.post('/', (req,res) => {
     const newPost = new Post({
         title: req.body.title,
         body: req.body.body
@@ -32,8 +32,8 @@ router.post('/', auth, (req,res) => {
 // @route DELETE api/posts/:id
 // @description delete a post
 // @access Restricted
-router.delete('/:id', auth, (req, res) => {
-    Item.findById(req.params.id)
+router.delete('/:id', (req, res) => {
+    Post.findById(req.params.id)
      .then(post => post.remove().then(() => res.json({success: true})))
      .catch(err => res.status(404).json({ success: false }));
    })

@@ -121,7 +121,7 @@ import PropTypes from 'prop-types'
                                  &times;
                                </Button>
                                 {title}
-                                
+                              
                                <UncontrolledDropdown style={{marginLeft: '57rem'}}>
                                 <DropdownToggle caret />
                                
