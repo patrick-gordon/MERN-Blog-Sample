@@ -26,13 +26,11 @@ class postModal extends Component {
         })
     }
 
-    onChange1 = e => {
-        this.setState({ [e.target.title]: e.target.value })
+    onChange = e => {
+        this.setState({ [e.target.name]: e.target.value })
     }
 
-    onChange2 = e => {
-        this.setState({ [e.target.body]: e.target.value })
-    }
+   
 
 
     render() {
@@ -55,15 +53,15 @@ class postModal extends Component {
                                     title='title' //match state
                                     // id='item'
                                     placeholder='Add Title For Post'
-                                    onChange={this.onChange1}
+                                    onChange={this.onChange}
                                  />
-                                <Label for='post'>post</Label>
+                                <Label for='body'>body</Label>
                                     <Input 
                                         type='textarea'
                                         body='body' //match state
                                         // id='item'
                                         placeholder='Add Post'
-                                        onChange={this.onChange2}
+                                        onChange={this.onChange}
                                 />
                             </FormGroup>
                     </Form>

@@ -1,11 +1,12 @@
 import { GET_POSTS, ADD_POST, DELETE_POST, ITEMS_LOADING } from './types';
 import axios from 'axios';
+import {tokenConfig} from './authActions'
 
 
-export const getPosts = () => dispatch => {
+export const getPosts = () => (dispatch, getState) => {
   dispatch(setPostsLoading());
   axios
-    .get('/api/posts')
+    .get('/api/posts', tokenConfig(getState))
     .then(res =>
          dispatch({
         type: GET_POSTS,

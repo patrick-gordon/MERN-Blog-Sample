@@ -16,7 +16,6 @@ import {
     Label,
     Input,
  } from 'reactstrap';
-import uuid from 'uuid';
 import { connect } from 'react-redux';
 import { getPosts, deletePost, addPost } from '../actions/postActions'
 import PropTypes from 'prop-types'
@@ -57,11 +56,11 @@ import PropTypes from 'prop-types'
         e.preventDefault();
 
         const newPost = {
-            id: uuid(),
             title: this.state.title,
             body: this.state.body
-        }
-        this.props.addPost(newPost)
+        };
+
+        this.props.addPost(newPost);
 
         this.toggle();
     }
@@ -121,8 +120,9 @@ import PropTypes from 'prop-types'
                                  &times;
                                </Button>
                                 {title}
+                               
                               
-                               <UncontrolledDropdown style={{marginLeft: '57rem'}}>
+                               <UncontrolledDropdown>
                                 <DropdownToggle caret />
                                
                                 <DropdownMenu>

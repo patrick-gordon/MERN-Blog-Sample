@@ -18,8 +18,8 @@ mongoose
     .catch(err => console.log(err));
 
     app.use('/api/posts', require('./Routes/api/posts'));
-    // app.use('/api/users', require('./Routes/api/users'));
-    // app.use('/api/auth', require('./Routes/api/auth'));
+    app.use('/api/users', require('./Routes/api/users'));
+    app.use('/api/auth', require('./Routes/api/auth'));
 
 
     const port = process.env.PORT || 4444;
