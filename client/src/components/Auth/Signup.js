@@ -7,7 +7,8 @@ import {
     Label,
     Input,
     Button,
-    Container
+    Container, 
+    Alert
 } from 'reactstrap';
 
 import { register } from '../../actions/authActions';
@@ -26,6 +27,18 @@ class Signup extends Component {
         register: PropTypes.func.isRequired
     }
 
+    componentDidUpdate(prevProps) {
+        const { error } = this.props;
+        if (error !== prevProps.error) {
+            //check for register error
+            if(error.id === 'REGISTER_FAIL'){
+                this.setState({ msg: error.msg.msg})
+              } else {
+                 this.setState({ msg: null });
+            }
+        }
+    }
+
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
@@ -40,7 +53,10 @@ class Signup extends Component {
             username,
             email, 
             password
-        }
+        };
+
+        //Attempt to register
+        this.props.register(newUser);
     };
 
   
@@ -49,6 +65,7 @@ class Signup extends Component {
         return (
             <div>
                 <Container>
+        {/* { this.state.msg ? ( <Alert color='danger'>{ this.state.msg } </Alert> ) : null} */}
                 <Form onSubmit={this.onSubmit} >
                     <FormGroup>
                         <Label for='name'>Username</Label>
@@ -78,7 +95,7 @@ class Signup extends Component {
                             placeholder="Email"
                             onChange={this.onChange}
                             />
-                        <Button color='dark' style={{ marginTop: '2rem', width: '10rem'}} block>
+                        <Button color='dark' style={{ width: '10rem'}} block className='mt-3'>
                             Submit
                         </Button>
                     </FormGroup>
@@ -92,11 +109,11 @@ class Signup extends Component {
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    error: state.error,
+    error: state.error
 
 });
 
 export default connect(
     mapStateToProps,
-    {register}  
+    { register }  
 )(Signup);

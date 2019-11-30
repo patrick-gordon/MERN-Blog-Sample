@@ -12,18 +12,18 @@ const User = require('../../models/User')
 //@Description Register new User
 //@Access Public
 router.post('/', (req,res) => {
-  const { name, email, password} = req.body;
+  const { username, email, password} = req.body;
 
-    if(!name || !email || !password) {
-        return res.status(400).json({ message: 'Please enter all fields'});
+    if(!username || !email || !password) {
+        return res.status(400).json({ msg: 'Please enter all fields'});
     }
 
     User.findOne({ email })
         .then(user => {
-            if(user) return res.status(400).json({ message: 'User already exists'});
+            if(user) return res.status(400).json({ msg: 'User already exists'});
 
             const newUser = new User({
-                name,
+                username,
                 email,
                 password
             });
@@ -44,7 +44,7 @@ router.post('/', (req,res) => {
                                         res.json({ 
                                             token,
                                             user: {
-                                                name: user.name,
+                                                username: user.username,
                                                 id: user.id,
                                                 email: user.email
                                             }

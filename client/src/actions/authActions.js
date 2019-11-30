@@ -19,7 +19,7 @@ export const loadUser = () => (dispatch, getState) => {
     dispatch({ type: USER_LOADING});
 
     axios
-        .get('/api/auth/user', tokenConfig(getState))
+        .get('/api/auth', tokenConfig(getState))
         .then( res => dispatch({
             type: USER_LOADED,
             payload: res.data
@@ -54,8 +54,8 @@ export const register = ({ username, password, email }) => dispatch => {
         );
         dispatch({
             type: REGISTER_FAIL
-        })
-    })
+        });
+    });
 }
 
 // set up config/headers and token

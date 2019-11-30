@@ -44,13 +44,11 @@ import PropTypes from 'prop-types'
         this.props.deletePost(id)
     }
 
-    onChange1 = e => {
-        this.setState({ [e.target.title]: e.target.value })
+    onChange = e => {
+        this.setState({ [e.target.name]: e.target.value })
     }
 
-    onChange2 = e => {
-        this.setState({ [e.target.body]: e.target.value })
-    }
+   
 
     onSubmit = e => {
         e.preventDefault();
@@ -66,8 +64,7 @@ import PropTypes from 'prop-types'
     }
    
 
-    render() {
-        
+    render() {  
         const { posts } = this.props.post;
         return (
             <div>
@@ -86,18 +83,20 @@ import PropTypes from 'prop-types'
                             <Label for='title'>title</Label>
                                 <Input 
                                     type='text'
+                                    name ='title'
                                     title='title' //match state
                                     // id='item'
                                     placeholder='Add Title For Post'
-                                    onChange={this.onChange1}
+                                    onChange={this.onChange}
                                  />
                             <Label for='post'>post</Label>
                                 <Input 
                                     type='textarea'
+                                    name ='body'
                                     body='body' //match state
                                     // id='item'
                                     placeholder='Add Post'
-                                    onChange={this.onChange2}
+                                    onChange={this.onChange}
                                 />
                                 <Button
                                     color='dark'
